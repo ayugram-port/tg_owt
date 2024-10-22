@@ -47,6 +47,18 @@ stdenv.mkDerivation {
     fetchSubmodules = true;
   };
 
+  patches = [
+    # Remove usage of AVCodecContext::reordered_opaque
+    (fetchpatch2 {
+      name = "webrtc-ffmpeg-7.patch";
+      url = "https://webrtc.googlesource.com/src/+/e7d10047096880feb5e9846375f2da54aef91202%5E%21/?format=TEXT";
+      decode = "base64 -d";
+      stripLen = 1;
+      extraPrefix = "src/";
+      hash = "sha256-EdwHeVko8uDsP5GTw2ryWiQgRVCAdPc1me6hySdiwMU=";
+    })
+  ];
+
   enableParallelBuilding = true;
 
   postPatch = lib.optionalString stdenv.isLinux ''
