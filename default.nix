@@ -33,6 +33,7 @@ in
   libGL,
   unstableGitUpdater,
   darwin,
+  fetchpatch2,
 }:
 
 stdenv.mkDerivation {
